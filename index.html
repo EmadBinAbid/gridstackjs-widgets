@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' style-src 'self' 'unsafe-inline';" >
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>Webleash!</title>
+    <style>
+    .webview {
+      position:absolute;
+    top:0;
+    left:0;
+    width: 500px;
+    height: 400px;
+    border: 5px solid brown;
+    padding: 10px;
+    border-radius: 15px;
+
+    }
+    </style>
+  </head>
+  <body>
+    <!-- <h1>Hello World!</h1>
+    We are using Node.js <span id="node-version"></span>,
+    Chromium <span id="chrome-version"></span>,
+    and Electron <span id="electron-version"></span>. -->
+
+    <div class="webview">
+      <webview id="foo" partition="electron2" src="https://webleash.symphonic.dev/" style="height:400px;"></webview>
+    </div>
+
+    <div class="webview" style="left:540px !important;">
+
+    <webview id="foo2" partition="electron" 
+    useragent="Mozilla/5.0 (Linux; U; Android 4.4.2; en-us; SCH-I535 Build/KOT49H) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30" 
+    src="https://webleash.symphonic.dev/" style="height:400px;"></webview>
+  </div>
+    
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js"></script>
+  </body>
+</html>
