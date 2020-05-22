@@ -21,7 +21,6 @@ class GridWidget {
         this.widget = null;
 
         this.addWidget = this.addWidget.bind(this);
-        var self = this;
     }
 
     addWidget() {
@@ -30,9 +29,15 @@ class GridWidget {
                 <div>
                     <div id="gsic${this.id}" class="grid-stack-item-content">
                         <div id="hdr${this.id}" class="header">
-                            <i id="expand${this.id}" class="fa fa-expand"></i>
+                            <div id="expand${this.id}">
+                                <i class="fa fa-expand icon-left"></i>
+                            </div>
+                            
+                            <div id="compress${this.id}" hidden>
+                                <i class="fa fa-compress icon-left"></i>
+                            </div>
                             Header ${this.id}
-                            <i id="close${this.id}" class="fa fa-close"></i>
+                            <i id="close${this.id}" class="fa fa-close icon-right"></i>
                         </div>
                         <webview id="wv${this.id}" partition="electron2" src="${document.getElementById("url").value}" autosize="on" >
                         </webview>
@@ -47,11 +52,28 @@ class GridWidget {
         }
     };
 
+    toggleFullScreenAndMinimizeScreen() {
+        document.getElementById(`expand${this.id}`).hidden = !document.getElementById(`expand${this.id}`).hidden;
+        document.getElementById(`compress${this.id}`).hidden = !document.getElementById(`compress${this.id}`).hidden;
+    };
+
     registerFullScreen() {
+        document.getElementById(`expand${this.id}`).hidden = false;
         document.getElementById(`expand${this.id}`).onclick = 
             () => {
                 console.log(this);
-                grid.update(this.widget.el, 1, 1, 1, 1);
+                this.toggleFullScreenAndMinimizeScreen();
+                grid.update(this.widget.el, 0, 0, window.innerWidth, window.innerHeight);
+            }
+    };
+
+    registerMinimizeScreen() {
+        document.getElementById(`compress${this.id}`).hidden = true;
+        document.getElementById(`compress${this.id}`).onclick = 
+            () => {
+                console.log(this);
+                this.toggleFullScreenAndMinimizeScreen();
+                grid.update(this.widget.el, 0, 0, this.width, this.height);
             }
     };
 
@@ -71,6 +93,7 @@ function createNewWidget() {
     let g = new GridWidget(`g${count}`);
     g.addWidget();
     g.registerFullScreen();
+    g.registerMinimizeScreen();
     g.registerRemoveWidget();
 
     // allWidgets.push(g);
