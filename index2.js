@@ -16,8 +16,8 @@ class GridWidget {
         this.id = id;
         this.x = 0;
         this.y = 0;
-        this.width = 4;
-        this.height = 4;
+        this.width = 3;
+        this.height = 5;
         this.widget = null;
 
         this.addWidget = this.addWidget.bind(this);
@@ -30,14 +30,14 @@ class GridWidget {
                     <div id="gsic${this.id}" class="grid-stack-item-content">
                         <div id="hdr${this.id}" class="header">
                             <div id="expand${this.id}">
-                                <i class="fa fa-expand icon-left"></i>
+                                <i class="fa fa-expand button icon-left"></i>
                             </div>
                             
                             <div id="compress${this.id}" hidden>
-                                <i class="fa fa-compress icon-left"></i>
+                                <i class="fa fa-compress button icon-left"></i>
                             </div>
                             Header ${this.id}
-                            <i id="close${this.id}" class="fa fa-close icon-right"></i>
+                            <i id="close${this.id}" class="fa fa-close button icon-right"></i>
                         </div>
                         <webview id="wv${this.id}" partition="electron2" src="${document.getElementById("url").value}" autosize="on" >
                         </webview>

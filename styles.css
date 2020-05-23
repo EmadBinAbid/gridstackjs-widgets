@@ -1,5 +1,19 @@
 .header {
-    background-color: #ff0000;
+    background-color: #f7f7f7;
+    padding: 5px;
+}
+
+.widget {
+    background: #000000;
+}
+
+.button {
+    margin: 2px;
+    color: #297fca;
+}
+
+.orange-text {
+    color: #f6b264;
 }
 
 .icon-left {
@@ -7,5 +21,9 @@
 }
 
 .icon-right {
+    float: right;
+}
+
+.right-align-content {
     float: right;
 }
